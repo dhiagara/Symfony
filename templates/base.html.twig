@@ -1,0 +1,79 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light"
+      style="height: 70px;"
+    >
+      <a class="navbar-brand" href="#">Symfony</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+      <ul class="nav navbar-nav navbar-right">
+        {% if app.user %}
+        <li><a class="nav-link" href="{{ path('list') }}">View List</a></li>
+        <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
+        {% else %}
+        <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
+        <li>
+          <a class="nav-link" href="{{ path('registration') }}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% block stylesheet %}
+  <link rel="stylesheet" type="text/css"     href="{{ asset('css/sidebar.css') }}" />
+  
+{% endblock %} 
+    
+      </div>
+      <!-- navbar-header-->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav">
+            <li class="active">
+               <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+               </button>
+            </li>
+         </ul>
+      </div>
+      <!-- bs-example-navbar-collapse-1 -->
+   </nav>
+   <div id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <li class="active">
+               <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-book fa-stack-1x "></i></span> Dashboard</a>
+               <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                  <li><a href="/createBook">add Book</a></li>
+                  <li><a href="/books">Book List</a></li>
+               </ul>
+            </li>
+            <li>
+               <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus  fa-stack-1x "></i></span>My books</a>
+               <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                  <li><a href="#"><i class="fa fa-heart fa-stack-1x "></i></span>favoris</a></li>
+                  <li><a href="#"><i class="fa fa-flag fa-stack-1x "></i></span>panier</a></li>
+               </ul>
+            </li>
+            
+            <li>
+               <a href="#"><i class="fa fa-wrench fa-stack-1x "></i></span>Services</a>
+            </li>
+            <li>
+               <a href="#"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
+            </li>
+         </ul>
+      </div>
+    {% block body %}{% endblock %} {% block javascripts %}{% endblock %}
+  </body>
+</html>
